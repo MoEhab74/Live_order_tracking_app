@@ -7,6 +7,8 @@ import 'package:practical_google_maps_example/core/widgets/spacing_widgets.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
+import 'package:practical_google_maps_example/features/auth/widgets/auth_header_widget.dart';
+import 'package:practical_google_maps_example/features/auth/widgets/auth_hint_widget.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -45,32 +47,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const HeightSpace(28),
-                  SizedBox(
-                    width: 335.w,
-                    child: Text(
-                      "Create an account",
-                      style: AppStyles.primaryHeadLinesStyle,
-                    ),
-                  ),
-                  const HeightSpace(8),
-                  SizedBox(
-                    width: 335.w,
-                    child: Text(
-                      "Let’s create your account.",
-                      style: AppStyles.grey12MediumStyle,
-                    ),
-                  ),
-                  const HeightSpace(20),
-                  Center(
-                    child: Image.asset(
-                      AppAssets.logo,
-                      width: 190.w,
-                      height: 190.w,
-                    ),
+                  const AuthHeader(
+                    title: "Create an account",
+                    subTitle: "Let’s create your account.",
+                    image: AppAssets.order,
                   ),
                   const HeightSpace(32),
                   Text("User Name", style: AppStyles.black16w500Style),
                   const HeightSpace(8),
+                  // Start of the form fields
                   CustomTextField(
                     controller: username,
                     hintText: "Enter Your User Name",
@@ -148,24 +133,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     },
                   ),
                   const HeightSpace(8),
-                  Center(
-                    child: InkWell(
-                      onTap: () {
-                        context.pop();
-                      },
-                      child: RichText(
-                        text: TextSpan(
-                          text: "Do you have account? ",
-                          style: AppStyles.black16w500Style
-                              .copyWith(color: AppColors.secondaryColor),
-                          children: [
-                            TextSpan(
-                                text: "Login",
-                                style: AppStyles.black15BoldStyle)
-                          ],
-                        ),
-                      ),
-                    ),
+                  AuthHintWidget(
+                    hintText: "Already have an account? ",
+                    buttonText: "Login",
+                    onTap: () => GoRouter.of(context).pop(),
                   ),
                   const HeightSpace(16),
                 ],

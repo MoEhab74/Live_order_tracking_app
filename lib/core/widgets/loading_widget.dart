@@ -16,11 +16,11 @@ class LoadingWidget extends StatelessWidget {
       height: height ?? MediaQuery.of(context).size.height,
       child: Center(
         child: SizedBox(
+          width: 50.w,
+          height: 50.w,
           child: CircularProgressIndicator(
             color: AppColors.primaryColor,
           ),
-          width: 50.w,
-          height: 50.w,
         ),
       ),
     );

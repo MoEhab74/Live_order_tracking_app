@@ -1,7 +1,4 @@
-import 'package:animated_snack_bar/animated_snack_bar.dart';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:practical_google_maps_example/core/routing/app_routes.dart';
@@ -11,6 +8,8 @@ import 'package:practical_google_maps_example/core/styling/app_styles.dart';
 import 'package:practical_google_maps_example/core/widgets/custom_text_field.dart';
 import 'package:practical_google_maps_example/core/widgets/primay_button_widget.dart';
 import 'package:practical_google_maps_example/core/widgets/spacing_widgets.dart';
+import 'package:practical_google_maps_example/features/auth/widgets/auth_header_widget.dart';
+import 'package:practical_google_maps_example/features/auth/widgets/auth_hint_widget.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -45,28 +44,10 @@ class _LoginScreenState extends State<LoginScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const HeightSpace(28),
-              SizedBox(
-                width: 335.w,
-                child: Text(
-                  "Login To Your Account",
-                  style: AppStyles.primaryHeadLinesStyle,
-                ),
-              ),
-              const HeightSpace(8),
-              SizedBox(
-                width: 335.w,
-                child: Text(
-                  "it's great to see you again",
-                  style: AppStyles.grey12MediumStyle,
-                ),
-              ),
-              const HeightSpace(20),
-              Center(
-                child: Image.asset(
-                  AppAssets.order,
-                  width: 190.w,
-                  height: 190.w,
-                ),
+              const AuthHeader(
+                title: "Login To Your Account",
+                subTitle: "it's great to see you again",
+                image: AppAssets.order,
               ),
               const HeightSpace(32),
               Text("Email", style: AppStyles.black16w500Style),
@@ -112,23 +93,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
               ),
               const Spacer(),
-              Center(
-                child: GestureDetector(
-                  onTap: () {
-                    context.pushNamed(AppRoutes.registerScreen);
-                  },
-                  child: RichText(
-                    text: TextSpan(
-                      text: "Don't have an account? ",
-                      style: AppStyles.black16w500Style
-                          .copyWith(color: AppColors.secondaryColor),
-                      children: [
-                        TextSpan(
-                            text: "Join", style: AppStyles.black15BoldStyle)
-                      ],
-                    ),
-                  ),
-                ),
+              AuthHintWidget(
+                hintText: "Don't have an account? ",
+                buttonText: "Sign up",
+                onTap: () => GoRouter.of(context).pushNamed(AppRoutes.registerScreen),
               ),
               const HeightSpace(16),
             ],
@@ -138,3 +106,4 @@ class _LoginScreenState extends State<LoginScreen> {
     ));
   }
 }
+
