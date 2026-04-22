@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:practical_google_maps_example/core/routing/router_generation_config.dart';
 import 'package:practical_google_maps_example/core/styling/theme_data.dart';
+import 'package:practical_google_maps_example/core/utils/service_locator.dart';
 import 'package:practical_google_maps_example/firebase_options.dart';
 
 void main() async {
@@ -11,6 +12,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  setupServiceLocator();
   runApp(const MyApp());
 }
 
